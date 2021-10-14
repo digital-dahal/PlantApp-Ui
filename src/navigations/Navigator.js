@@ -2,20 +2,21 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
-import { View } from "react-native";
-import { Profile, Home, Favourite } from "../screens";
+import { Profile, Home, Favourite,Details } from "../screens";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function HomeStack() {
+export  function HomeStack() {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={BottomNavigation} />
+      <Stack.Screen name="Detail" component={Details}  />
+
     </Stack.Navigator>
   );
 }
@@ -27,7 +28,7 @@ function ProfileStack() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Home" component={Profile} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 }
@@ -43,7 +44,7 @@ function FavouriteStack() {
   );
 }
 
-export default function BottomNavigation() {
+function BottomNavigation() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -76,7 +77,7 @@ export default function BottomNavigation() {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Favourite" component={FavouriteStack} />
       <Tab.Screen name="Profile" component={ProfileStack} />
     </Tab.Navigator>
